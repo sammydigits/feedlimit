@@ -1,25 +1,64 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  openPopup = url => {
+    console.log(this);
+
+    const width = window.innerWidth - 100;
+    const height = window.innerHeight * 5;
+    const left = 100;
+    const top = 0;
+
+    console.log(width, height, left, top);
+
+    //const url = `https://www.twitter.com`;
+
+    let mywin = window.open(
+      url,
+      "feedlimit",
+      `toolbar=no, location=no, directories=no, status=no, menubar=no, 
+      scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
+      height=${height}, top=${top}, left=${left}`
+    );
+
+    window.setTimeout(function() {
+      mywin.close();
+      console.log("closing...");
+    }, 3000 * 100);
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div>
+          <button onClick={() => this.openPopup("https://www.twitter.com")}>
+            Twitter
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => this.openPopup("https://news.ycombinator.com/news")}
           >
-            Learn React
-          </a>
-        </header>
+            Hacker News
+          </button>
+        </div>
+        <div>
+          <button onClick={() => this.openPopup("https://old.reddit.com")}>
+            Reddit
+          </button>
+        </div>{" "}
+        <div>
+          <button
+            onClick={() =>
+              this.openPopup(
+                "https://www.youtube.com/feed/subscriptions?flow=2"
+              )
+            }
+          >
+            YouTube
+          </button>
+        </div>
       </div>
     );
   }
