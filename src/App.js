@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    timer: "5:00"
+  };
+
   openPopup = url => {
     console.log(this);
 
@@ -42,10 +46,16 @@ class App extends Component {
     }*/
   };
 
+  getTimer() {
+    const { timer } = this.state;
+    return timer === "0:00" ? "0:00" : timer;
+  }
+
   render() {
     return (
       <div className="App">
         <div style={{ backgroundColor: `#172b3c` }}>
+          <p class="timer">{this.getTimer()}</p>
           <button onClick={() => this.openPopup("https://www.twitter.com")}>
             Twitter
           </button>
