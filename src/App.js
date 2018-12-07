@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <div style={{ backgroundColor: `#172b3c` }}>
           <button onClick={() => this.openPopup("https://www.twitter.com")}>
             Twitter
           </button>
@@ -67,9 +67,22 @@ class App extends Component {
             YouTube
           </button>
         </div>
-        <div>
-          <p>pretty picture here</p>
+        <div
+          style={{
+            height: `727px`,
+            backgroundSize: `contain`,
+            backgroundImage: `url(https://images.unsplash.com/photo-1478088913771-e3a36f50bb63?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=793&amp;q=80)`
+          }}
+        >
+          <p style={{ textAlign: `right` }}>
+            Photo by{" "}
+            <a href="https://unsplash.com/photos/pOWBHdgy1Lo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+              Neven Krcmarek
+            </a>{" "}
+            on Unsplash
+          </p>
         </div>
+        footer here
       </div>
     );
   }
