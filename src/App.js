@@ -5,9 +5,9 @@ class App extends Component {
   openPopup = url => {
     console.log(this);
 
-    const width = window.innerWidth - 100;
+    const width = window.innerWidth - 250;
     const height = window.innerHeight * 5;
-    const left = 100;
+    const left = 250;
     const top = 0;
 
     console.log(width, height, left, top);
@@ -26,6 +26,20 @@ class App extends Component {
       mywin.close();
       console.log("closing...");
     }, 3000 * 100);
+
+    /*var windowObjectReference = null; // global variable
+
+    function openRequestedPopup(strUrl, strWindowName) {
+      if (windowObjectReference == null || windowObjectReference.closed) {
+        windowObjectReference = window.open(
+          strUrl,
+          strWindowName,
+          "resizable,scrollbars,status"
+        );
+      } else {
+        windowObjectReference.focus();
+      }
+    }*/
   };
 
   render() {
@@ -35,20 +49,14 @@ class App extends Component {
           <button onClick={() => this.openPopup("https://www.twitter.com")}>
             Twitter
           </button>
-        </div>
-        <div>
           <button
             onClick={() => this.openPopup("https://news.ycombinator.com/news")}
           >
             Hacker News
           </button>
-        </div>
-        <div>
           <button onClick={() => this.openPopup("https://old.reddit.com")}>
             Reddit
           </button>
-        </div>{" "}
-        <div>
           <button
             onClick={() =>
               this.openPopup(
@@ -58,6 +66,9 @@ class App extends Component {
           >
             YouTube
           </button>
+        </div>
+        <div>
+          <p>pretty picture here</p>
         </div>
       </div>
     );
