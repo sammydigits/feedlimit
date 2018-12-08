@@ -2,7 +2,19 @@
   display: grid;
   grid-template-columns: 20% 80%;
 }
+.controlBar {
+  background-color: #172b3c;
+  padding: 20px;
+}
 .timer {
   color: White;
   text-align: center;
+}
+h1 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 3em;
+  padding: 0;
+  margin: 0;
 }

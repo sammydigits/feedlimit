@@ -54,7 +54,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div style={{ backgroundColor: `#172b3c` }}>
+        <div className="controlBar">
+          <h1>FeedLimit</h1>
           <p class="timer">{this.getTimer()}</p>
           <button onClick={() => this.openPopup("https://www.twitter.com")}>
             Twitter
