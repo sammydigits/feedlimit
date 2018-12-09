@@ -1,82 +1,81 @@
 import React, { Component } from "react";
+import Clock from "./components/clock";
+import Button from "./components/button";
+import Input from "./components/input";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    timer: "5:00"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      running: false
+    };
+  }
 
-  openPopup = url => {
-    console.log(this);
-
-    const width = window.innerWidth - 250;
-    const height = window.innerHeight * 5;
-    const left = 250;
-    const top = 0;
-
-    console.log(width, height, left, top);
-
-    //const url = `https://www.twitter.com`;
-
-    let mywin = window.open(
-      url,
-      "feedlimit",
-      `toolbar=no, location=no, directories=no, status=no, menubar=no, 
-      scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
-      height=${height}, top=${top}, left=${left}`
-    );
-
-    window.setTimeout(function() {
-      mywin.close();
-      console.log("closing...");
-    }, 3000 * 100);
-
-    /*var windowObjectReference = null; // global variable
-
-    function openRequestedPopup(strUrl, strWindowName) {
-      if (windowObjectReference == null || windowObjectReference.closed) {
-        windowObjectReference = window.open(
-          strUrl,
-          strWindowName,
-          "resizable,scrollbars,status"
-        );
-      } else {
-        windowObjectReference.focus();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.running !== prevState.running) {
+      switch (this.state.running) {
+        case true:
+          this.handleStart();
       }
-    }*/
-  };
+    }
+  }
 
-  getTimer() {
-    const { timer } = this.state;
-    return timer === "0:00" ? "0:00" : timer;
+  handleStart() {
+    this.timer = setInterval(() => {
+      const newCount = this.state.count - 1;
+      this.setState({ count: newCount >= 0 ? newCount : 0 });
+    }, 1000);
+  }
+
+  handleStop() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.setState({ running: false });
+    }
+  }
+
+  handleReset() {
+    this.setState({ count: 0 });
+  }
+
+  handleCountdown(seconds) {
+    this.setState({
+      count: seconds,
+      running: true
+    });
   }
 
   render() {
+    const { count } = this.state;
     return (
       <div className="App">
         <div className="controlBar">
           <h1>FeedLimit</h1>
-          <p class="timer">{this.getTimer()}</p>
-          <button onClick={() => this.openPopup("https://www.twitter.com")}>
-            Twitter
-          </button>
-          <button
-            onClick={() => this.openPopup("https://news.ycombinator.com/news")}
-          >
-            Hacker News
-          </button>
-          <button onClick={() => this.openPopup("https://old.reddit.com")}>
-            Reddit
-          </button>
-          <button
-            onClick={() =>
-              this.openPopup(
-                "https://www.youtube.com/feed/subscriptions?flow=2"
-              )
-            }
-          >
-            YouTube
-          </button>
+          <Clock time={count} />
+          <Input
+            onSetCountdown={this.handleCountdown.bind(this)}
+            site="Twitter"
+            url="https://www.twitter.com"
+          />
+          <Input
+            onSetCountdown={this.handleCountdown.bind(this)}
+            site="HN"
+            url="https://news.ycombinator.com/news"
+          />{" "}
+          <Input
+            onSetCountdown={this.handleCountdown.bind(this)}
+            site="Reddit"
+            url="https://old.reddit.com"
+          />
+          <Input
+            onSetCountdown={this.handleCountdown.bind(this)}
+            site="YouTube"
+            url="https://www.youtube.com/feed/subscriptions?flow=2"
+          />
+          <Button label="stop" onClickHandler={this.handleStop.bind(this)} />
+          <Button label="reset" onClickHandler={this.handleReset.bind(this)} />
         </div>
         <div
           style={{
