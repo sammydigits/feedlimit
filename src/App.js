@@ -74,6 +74,11 @@ class App extends Component {
             site="YouTube"
             url="https://www.youtube.com/feed/subscriptions?flow=2"
           />
+          <Input
+            onSetCountdown={this.handleCountdown.bind(this)}
+            site="Hypebeast"
+            url="https://www.hypebeast.com"
+          />
           <Button label="stop" onClickHandler={this.handleStop.bind(this)} />
           <Button label="reset" onClickHandler={this.handleReset.bind(this)} />
         </div>
