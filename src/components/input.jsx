@@ -25,11 +25,11 @@ class Input extends Component {
               height=${height}, top=${top}, left=${left}`
       );
 
-      window.setTimeout(function() {
+      /*window.setTimeout(function() {
         mywin.close();
         console.log("closing...");
       }, 3000 * 100);
-
+      */
       /*var windowObjectReference = null; // global variable
         
             function openRequestedPopup(strUrl, strWindowName) {
