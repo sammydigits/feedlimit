@@ -79,8 +79,6 @@ class App extends Component {
             site="Hypebeast"
             url="https://www.hypebeast.com"
           />
-          <Button label="stop" onClickHandler={this.handleStop.bind(this)} />
-          <Button label="reset" onClickHandler={this.handleReset.bind(this)} />
         </div>
         <div
           style={{

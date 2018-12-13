@@ -8,41 +8,37 @@ class Input extends Component {
       this.refs.seconds.value = "";
       this.props.onSetCountdown(parseInt(strSeconds, 10));
 
-      const width = window.innerWidth - 250;
-      const height = window.innerHeight * 5;
+      /*const width = window.innerWidth - 250;
+      const height = window.innerHeight;
       const left = 250;
       const top = 0;
+      */ const url = this
+        .props.url;
 
-      console.log(width, height, left, top);
-
-      const url = this.props.url;
-
-      let mywin = window.open(
+      /*let mywin = window.open(
         url,
         "feedlimit",
-        `toolbar=no, location=no, directories=no, status=no, menubar=no, 
-              scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
+        `toolbar=yes, location=yes, directories=no, status=yes, menubar=no, 
+              scrollbars=yes, resizable=yes, copyhistory=yes, width=${width}, 
               height=${height}, top=${top}, left=${left}`
-      );
+      );*/
 
       /*window.setTimeout(function() {
         mywin.close();
         console.log("closing...");
       }, 3000 * 100);
       */
-      /*var windowObjectReference = null; // global variable
-        
-            function openRequestedPopup(strUrl, strWindowName) {
-              if (windowObjectReference == null || windowObjectReference.closed) {
-                windowObjectReference = window.open(
-                  strUrl,
-                  strWindowName,
-                  "resizable,scrollbars,status"
-                );
-              } else {
-                windowObjectReference.focus();
-              }
-            }*/
+      var windowObjectReference = null; // global variable
+
+      if (windowObjectReference == null || windowObjectReference.closed) {
+        windowObjectReference = window.open(
+          url,
+          "feedlimit",
+          "resizable,scrollbars,status"
+        );
+      } else {
+        windowObjectReference.focus();
+      }
     }
   }
 
